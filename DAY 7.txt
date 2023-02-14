@@ -1,0 +1,60 @@
+// Get all the countries from the Asia continent /region using the Filter function
+
+var countrydetails=new XMLHttpRequest();
+countrydetails.open('GET','https://restcountries.com/v3.1/all','true');
+countrydetails.send();
+countrydetails.onload=function (){
+    var country=JSON.parse(this.response);
+    const asia=country.filter((element)=>{
+        if(element.region==='Asia'){
+            return element.name;
+        }
+    })
+    console.log(asia);}
+
+//Get all the countries with population of less than 2 lacs using Filter function
+
+var countrydetails=new XMLHttpRequest();
+countrydetails.open('GET','https://restcountries.com/v3.1/all','true');
+countrydetails.send();
+countrydetails.onload=function (){
+    var countryData=JSON.parse(this.response);
+    const pcount=countryData.filter((element)=>{
+        return element.population<200000;
+    })
+    console.log(pcount);}
+
+//Print the following details name, capital, flag using forEach function.
+
+var countrydetails=new XMLHttpRequest();
+countrydetails.open('GET','https://restcountries.com/v3.1/all','true');
+countrydetails.send();
+countrydetails.onload=function (){
+    var countryData=JSON.parse(this.response);
+    countryData.forEach((element)=>{
+        console.log(element.name,element.capital,element.flag);
+    })}
+
+//Print the total population of countries using reduce function 
+
+var countrydetails=new XMLHttpRequest();
+countrydetails.open('GET','https://restcountries.com/v3.1/all','true');
+countrydetails.send();
+countrydetails.onload=function (){
+    var country=JSON.parse(this.response);
+    const PopCount=country.reduce((acc,element)=>{
+        return acc+element.population;
+    },0)
+    console.log(PopCount);}
+
+//Print the country which uses US Dollars as currency.
+
+var request=new XMLHttpRequest();
+request.open('GET','https://restcountries.com/v3.1/all','true');
+request.send();
+request.onload=function (){
+    var countryData=JSON.parse(this.response);
+    const currencys=countryData.filter((element)=>{
+        return element.currencies;
+    })
+    console.log(currencys);}
